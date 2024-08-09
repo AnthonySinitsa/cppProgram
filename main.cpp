@@ -1,23 +1,14 @@
 #include <iostream>
-#include <random> // for std::mt19937 and std::random_device
+
+void addAndPrint(auto x, auto y)
+{
+    std::cout << x + y << '\n';
+}
 
 int main()
 {
-	std::mt19937 mt{ std::random_device{}() };
+    addAndPrint(2, 3); // case 1: call addAndPrint with int parameters
+    addAndPrint(4.5, 6.7); // case 2: call addAndPrint with double parameters
 
-	// Create a reusable random number generator that generates uniform numbers between 1 and 6
-	std::uniform_int_distribution<> die6{ 1, 6 }; // for C++14, use std::uniform_int_distribution<> die6{ 1, 6 };
-
-	// Print a bunch of random numbers
-	for (int count{ 1 }; count <= 40; ++count)
-	{
-		std::cout << die6(mt) << '\t'; // generate a roll of the die here
-
-		// If we've printed 10 numbers, start a new row
-		if (count % 10 == 0)
-			std::cout << '\n';
-	}
-
-	return 0;
+    return 0;
 }
-// test comment
