@@ -1,14 +1,14 @@
-#include <iostream>
-
-void addAndPrint(auto x, auto y)
+int add(int x, int y) // integer version
 {
-    std::cout << x + y << '\n';
+    return x + y;
+}
+
+double add(double x, double y) // floating point version
+{
+    return x + y;
 }
 
 int main()
 {
-    addAndPrint(2, 3); // case 1: call addAndPrint with int parameters
-    addAndPrint(4.5, 6.7); // case 2: call addAndPrint with double parameters
-
     return 0;
 }
