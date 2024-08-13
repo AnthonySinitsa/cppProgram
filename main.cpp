@@ -1,17 +1,16 @@
-#include <iostream>
-
-int add(int x, int y) // integer version
+void foo(int)
 {
-    return x + y;
 }
 
-double add(double x, double y) // floating point version
+void foo(double)
 {
-    return x + y;
 }
 
 int main()
 {
-    std::cout << add(1.5, 2.0) << "\n";
+    foo('a');  // promoted to match foo(int)
+    foo(true); // promoted to match foo(int)
+    foo(4.5f); // promoted to match foo(double)
+
     return 0;
 }
