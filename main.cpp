@@ -1,16 +1,15 @@
 #include <iostream>
 
-void print(int x = 10, int y = 20, int z = 30)
-{
-    std::cout << "Values: " << x << " " << y << " " << z << '\n';
+// write your add function template here
+template <typename T>
+T add(T x, T y) {
+	return x + y;
 }
 
 int main()
 {
-    print(1, 2, 3); // all explicit arguments
-    print(1, 2); // rightmost argument defaulted
-    print(1); // two rightmost arguments defaulted
-    print(); // all arguments defaulted
+	std::cout << add(2, 3) << '\n';
+	std::cout << add(1.2, 3.4) << '\n';
 
-    return 0;
+	return 0;
 }
