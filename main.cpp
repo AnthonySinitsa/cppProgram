@@ -1,21 +1,16 @@
 #include <iostream>
 
-void printInt(int x)
+void print(int x = 10, int y = 20, int z = 30)
 {
-    std::cout << x << '\n';
+    std::cout << "Values: " << x << " " << y << " " << z << '\n';
 }
-
-void printInt(char) = delete; // calls to this function will halt compilation
-void printInt(bool) = delete; // calls to this function will halt compilation
 
 int main()
 {
-    printInt(97);   // okay
-
-    printInt('a');  // compile error: function deleted
-    printInt(true); // compile error: function deleted
-
-    printInt(5.0);  // compile error: ambiguous match
+    print(1, 2, 3); // all explicit arguments
+    print(1, 2); // rightmost argument defaulted
+    print(1); // two rightmost arguments defaulted
+    print(); // all arguments defaulted
 
     return 0;
 }
