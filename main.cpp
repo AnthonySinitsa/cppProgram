@@ -1,19 +1,17 @@
 #include <iostream>
 
-void addOne(int& y) // y is bound to the actual object x
-{
-    ++y; // this modifies the actual object x
-}
-
 int main()
 {
     int x{ 5 };
+    int* ptr{ &x }; // initialize ptr with address of variable x
 
-    std::cout << "value = " << x << '\n';
+    std::cout << x << '\n';    // print x's value
+    std::cout << *ptr << '\n'; // print the value at the address that ptr is holding (x's address)
 
-    addOne(x);
+    *ptr = 6; // The object at the address held by ptr (x) assigned value 6 (note that ptr is dereferenced here)
 
-    std::cout << "value = " << x << '\n'; // x has been modified
+    std::cout << x << '\n';
+    std::cout << *ptr << '\n'; // print the value at the address that ptr is holding (x's address)
 
     return 0;
 }
