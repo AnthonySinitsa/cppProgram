@@ -2,12 +2,8 @@
 
 int main()
 {
-	short value{ 7 }; // &value = 0012FF60
-	short otherValue{ 3 }; // &otherValue = 0012FF54
+    int* ptr{ nullptr }; // Create a null pointer
+    std::cout << *ptr << '\n'; // Dereference the null pointer
 
-	short* ptr{ &value };
-
-	std::cout << &value << '\n';
-
-	return 0;
+    return 0;
 }
