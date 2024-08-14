@@ -3,15 +3,18 @@
 int main()
 {
     int x{ 5 };
-    int* ptr{ &x }; // initialize ptr with address of variable x
+    int* ptr{ &x };
 
-    std::cout << x << '\n';    // print x's value
-    std::cout << *ptr << '\n'; // print the value at the address that ptr is holding (x's address)
+    std::cout << *ptr << '\n'; // valid
 
-    *ptr = 6; // The object at the address held by ptr (x) assigned value 6 (note that ptr is dereferenced here)
+    {
+        int y{ 6 };
+        ptr = &y;
 
-    std::cout << x << '\n';
-    std::cout << *ptr << '\n'; // print the value at the address that ptr is holding (x's address)
+        std::cout << *ptr << '\n'; // valid
+    } // y goes out of scope, and ptr is now dangling
+
+    std::cout << *ptr << '\n'; // undefined behavior from dereferencing a dangling pointer
 
     return 0;
 }
