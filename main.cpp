@@ -2,19 +2,12 @@
 
 int main()
 {
-    int x{ 5 };
-    int* ptr{ &x };
+	short value{ 7 }; // &value = 0012FF60
+	short otherValue{ 3 }; // &otherValue = 0012FF54
 
-    std::cout << *ptr << '\n'; // valid
+	short* ptr{ &value };
 
-    {
-        int y{ 6 };
-        ptr = &y;
+	std::cout << &value << '\n';
 
-        std::cout << *ptr << '\n'; // valid
-    } // y goes out of scope, and ptr is now dangling
-
-    std::cout << *ptr << '\n'; // undefined behavior from dereferencing a dangling pointer
-
-    return 0;
+	return 0;
 }
