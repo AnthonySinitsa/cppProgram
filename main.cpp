@@ -1,15 +1,15 @@
 #include <iostream>
 
-// write your mult function template here
-template <typename T>
-T mult(T x, int y) {
-	return x * y;
-}
-
 int main()
 {
-	std::cout << mult(2, 3) << '\n';
-	std::cout << mult(1.2, 3) << '\n';
+    int x{ 5 };
 
-	return 0;
-}
+    {
+        int& ref{ x };   // ref is a reference to x
+        std::cout << ref << '\n'; // prints value of ref (5)
+    } // ref is destroyed here -- x is unaware of this
+
+    std::cout << x << '\n'; // prints value of x (5)
+
+    return 0;
+} // x destroyed here
