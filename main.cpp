@@ -1,15 +1,19 @@
 #include <iostream>
 
+void addOne(int& y) // y is bound to the actual object x
+{
+    ++y; // this modifies the actual object x
+}
+
 int main()
 {
     int x{ 5 };
 
-    {
-        int& ref{ x };   // ref is a reference to x
-        std::cout << ref << '\n'; // prints value of ref (5)
-    } // ref is destroyed here -- x is unaware of this
+    std::cout << "value = " << x << '\n';
 
-    std::cout << x << '\n'; // prints value of x (5)
+    addOne(x);
+
+    std::cout << "value = " << x << '\n'; // x has been modified
 
     return 0;
-} // x destroyed here
+}
