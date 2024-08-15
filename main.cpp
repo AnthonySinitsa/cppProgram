@@ -1,28 +1,30 @@
+#include <cmath>    // for std::sin() and std::cos()
 #include <iostream>
-#include <string>
 
-void printByValue(std::string val) // The function parameter is a copy of str
+// sinOut and cosOut are out parameters
+void getSinCos(double degrees, double& sinOut, double& cosOut)
 {
-    std::cout << val << '\n'; // print the value via the copy
-}
-
-void printByReference(const std::string& ref) // The function parameter is a reference that binds to str
-{
-    std::cout << ref << '\n'; // print the value via the reference
-}
-
-void printByAddress(const std::string* ptr) // The function parameter is a pointer that holds the address of str
-{
-    std::cout << *ptr << '\n'; // print the value via the dereferenced pointer
+    // sin() and cos() take radians, not degrees, so we need to convert
+    constexpr double pi{ 3.14159265358979323846 }; // the value of pi
+    double radians = degrees * pi / 180.0;
+    sinOut = std::sin(radians);
+    cosOut = std::cos(radians);
 }
 
 int main()
 {
-    std::string str{ "Hello, world!" };
+    double sin{ 0.0 };
+    double cos{ 0.0 };
 
-    printByValue(str); // pass str by value, makes a copy of str
-    printByReference(str); // pass str by reference, does not make a copy of str
-    printByAddress(&str); // pass str by address, does not make a copy of str
+    double degrees{};
+    std::cout << "Enter the number of degrees: ";
+    std::cin >> degrees;
+
+    // getSinCos will return the sin and cos in variables sin and cos
+    getSinCos(degrees, sin, cos);
+
+    std::cout << "The sin is " << sin << '\n';
+    std::cout << "The cos is " << cos << '\n';
 
     return 0;
 }
