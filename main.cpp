@@ -1,32 +1,40 @@
-#include <bitset>
 #include <iostream>
+#include <string_view>
 
-namespace Flags
+enum AnimalType
 {
-    enum State
+    cat,
+    dog,
+    chicken,
+};
+
+constexpr std::string_view animalName(AnimalType type)
+{
+    switch (type)
     {
-        isHungry,
-        isSad,
-        isMad,
-        isHappy,
-        isLaughing,
-        isAsleep,
-        isDead,
-        isCrying,
-    };
+    case cat: return "cat";
+    case dog: return "dog";
+    case chicken: return "chicken";
+    default:  return "";
+    }
 }
+
+constexpr int numLegs(AnimalType type)
+{
+    switch (type)
+    {
+    case cat: return 4;
+    case dog: return 4;
+    case chicken: return 2;
+    default:  return 0;
+    }
+}
+
 
 int main()
 {
-    std::bitset<8> me{};
-    me.set(Flags::isHappy);
-    me.set(Flags::isLaughing);
-
-    std::cout << std::boolalpha; // print bool as true/false
-
-    // Query a few states (we use the any() function to see if any bits remain set)
-    std::cout << "I am happy? " << me.test(Flags::isHappy) << '\n';
-    std::cout << "I am laughing? " << me.test(Flags::isLaughing) << '\n';
+    constexpr AnimalType animal{ cat };
+    std::cout << "A " << animalName(animal) << " has " << numLegs(animal) << " legs\n";
 
     return 0;
 }
