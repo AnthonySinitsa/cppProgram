@@ -1,40 +1,33 @@
 #include <iostream>
 #include <string_view>
 
-enum AnimalType
+struct Cat
 {
-    cat,
-    dog,
-    chicken,
+    std::string_view name{ "cat" };
+    int numLegs{ 4 };
 };
 
-constexpr std::string_view animalName(AnimalType type)
+struct Dog
 {
-    switch (type)
-    {
-    case cat: return "cat";
-    case dog: return "dog";
-    case chicken: return "chicken";
-    default:  return "";
-    }
-}
+    std::string_view name{ "dog" };
+    int numLegs{ 4 };
+};
 
-constexpr int numLegs(AnimalType type)
+struct Chicken
 {
-    switch (type)
-    {
-    case cat: return 4;
-    case dog: return 4;
-    case chicken: return 2;
-    default:  return 0;
-    }
-}
+    std::string_view name{ "chicken" };
+    int numLegs{ 2 };
+};
 
+struct Snake {
+    std::string_view name{ "snake" };
+    int numLegs{ 0 };
+};
 
 int main()
 {
-    constexpr AnimalType animal{ cat };
-    std::cout << "A " << animalName(animal) << " has " << numLegs(animal) << " legs\n";
+    constexpr Snake animal;
+    std::cout << "a " << animal.name << " has " << animal.numLegs << " legs\n";
 
     return 0;
 }
