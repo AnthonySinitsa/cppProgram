@@ -1,33 +1,22 @@
 #include <iostream>
-#include <string_view>
 
-struct Cat
+class Date       // we changed struct to class
 {
-    std::string_view name{ "cat" };
-    int numLegs{ 4 };
+public:          // and added this line, which is called an access specifier
+    int m_day{}; // and added "m_" prefixes to each of the member names
+    int m_month{};
+    int m_year{};
 };
 
-struct Dog
+void printDate(const Date& date)
 {
-    std::string_view name{ "dog" };
-    int numLegs{ 4 };
-};
-
-struct Chicken
-{
-    std::string_view name{ "chicken" };
-    int numLegs{ 2 };
-};
-
-struct Snake {
-    std::string_view name{ "snake" };
-    int numLegs{ 0 };
-};
+    std::cout << date.m_day << '/' << date.m_month << '/' << date.m_year;
+}
 
 int main()
 {
-    constexpr Snake animal;
-    std::cout << "a " << animal.name << " has " << animal.numLegs << " legs\n";
+    Date date{ 4, 10, 21 };
+    printDate(date);
 
     return 0;
 }
