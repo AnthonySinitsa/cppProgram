@@ -1,30 +1,32 @@
-#include <cmath>    // for std::sin() and std::cos()
+#include <bitset>
 #include <iostream>
 
-// sinOut and cosOut are out parameters
-void getSinCos(double degrees, double& sinOut, double& cosOut)
+namespace Flags
 {
-    // sin() and cos() take radians, not degrees, so we need to convert
-    constexpr double pi{ 3.14159265358979323846 }; // the value of pi
-    double radians = degrees * pi / 180.0;
-    sinOut = std::sin(radians);
-    cosOut = std::cos(radians);
+    enum State
+    {
+        isHungry,
+        isSad,
+        isMad,
+        isHappy,
+        isLaughing,
+        isAsleep,
+        isDead,
+        isCrying,
+    };
 }
 
 int main()
 {
-    double sin{ 0.0 };
-    double cos{ 0.0 };
+    std::bitset<8> me{};
+    me.set(Flags::isHappy);
+    me.set(Flags::isLaughing);
 
-    double degrees{};
-    std::cout << "Enter the number of degrees: ";
-    std::cin >> degrees;
+    std::cout << std::boolalpha; // print bool as true/false
 
-    // getSinCos will return the sin and cos in variables sin and cos
-    getSinCos(degrees, sin, cos);
-
-    std::cout << "The sin is " << sin << '\n';
-    std::cout << "The cos is " << cos << '\n';
+    // Query a few states (we use the any() function to see if any bits remain set)
+    std::cout << "I am happy? " << me.test(Flags::isHappy) << '\n';
+    std::cout << "I am laughing? " << me.test(Flags::isLaughing) << '\n';
 
     return 0;
 }
