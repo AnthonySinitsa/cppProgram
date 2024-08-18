@@ -1,31 +1,38 @@
 #include <iostream>
 
-// Provide the definition for IntPair and the print() member function here
-struct IntPair {
-	int p1;
-	int p2;
-	void print() {
-		std::cout << "Pair(" << p1 << ", " << p2 << ")\n";
-	}
+class Point3d {
+private:
+    int m_x, m_y, m_z;
+public:
+    void setValues(int x, int y, int z) {
+        m_x = x;
+        m_y = y;
+        m_z = z;
+    }
+    void print() {
+        std::cout << "<" << m_x << m_y << m_z << ">";
+    }
 
-	bool isEqual(IntPair a) {
-		return (p1 == a.p1) && (p2 == a.p2);
+	bool isEqual(const Point3d& p) const {
+		return (m_x == p.m_x) && (m_y == p.m_y) && (m_z == p.m_z);
+
 	}
 };
 
 int main()
 {
-	IntPair p1{ 1, 2 };
-	IntPair p2{ 3, 4 };
+	Point3d point1{};
+	point1.setValues(1, 2, 3);
 
-	std::cout << "p1: ";
-	p1.print();
+	Point3d point2{};
+	point2.setValues(1, 2, 3);
 
-	std::cout << "p2: ";
-	p2.print();
+	std::cout << "point 1 and point 2 are" << (point1.isEqual(point2) ? "" : " not") << " equal\n";
 
-	std::cout << "p1 and p1 " << (p1.isEqual(p1) ? "are equal\n" : "are not equal\n");
-	std::cout << "p1 and p2 " << (p1.isEqual(p2) ? "are equal\n" : "are not equal\n");
+	Point3d point3{};
+	point3.setValues(3, 4, 5);
+
+	std::cout << "point 1 and point 3 are" << (point1.isEqual(point3) ? "" : " not") << " equal\n";
 
 	return 0;
 }
