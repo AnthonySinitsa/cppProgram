@@ -1,38 +1,33 @@
 #include <iostream>
 
-class Point3d {
+class Date
+{
 private:
-    int m_x, m_y, m_z;
+    int m_year{ 2020 };
+    int m_month{ 10 };
+    int m_day{ 14 };
+
 public:
-    void setValues(int x, int y, int z) {
-        m_x = x;
-        m_y = y;
-        m_z = z;
-    }
-    void print() {
-        std::cout << "<" << m_x << m_y << m_z << ">";
+    void print()
+    {
+        std::cout << m_year << '/' << m_month << '/' << m_day << '\n';
     }
 
-	bool isEqual(const Point3d& p) const {
-		return (m_x == p.m_x) && (m_y == p.m_y) && (m_z == p.m_z);
+    int getYear() const { return m_year; }        // getter for year
+    void setYear(int year) { m_year = year; }     // setter for year
 
-	}
+    int getMonth() const { return m_month; }     // getter for month
+    void setMonth(int month) { m_month = month; } // setter for month
+
+    int getDay() const { return m_day; }          // getter for day
+    void setDay(int day) { m_day = day; }         // setter for day
 };
 
 int main()
 {
-	Point3d point1{};
-	point1.setValues(1, 2, 3);
+    Date d{};
+    d.setYear(2021);
+    std::cout << "The year is: " << d.getYear() << '\n';
 
-	Point3d point2{};
-	point2.setValues(1, 2, 3);
-
-	std::cout << "point 1 and point 2 are" << (point1.isEqual(point2) ? "" : " not") << " equal\n";
-
-	Point3d point3{};
-	point3.setValues(3, 4, 5);
-
-	std::cout << "point 1 and point 3 are" << (point1.isEqual(point3) ? "" : " not") << " equal\n";
-
-	return 0;
+    return 0;
 }
