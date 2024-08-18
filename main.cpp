@@ -1,22 +1,31 @@
 #include <iostream>
 
-class Date       // we changed struct to class
-{
-public:          // and added this line, which is called an access specifier
-    int m_day{}; // and added "m_" prefixes to each of the member names
-    int m_month{};
-    int m_year{};
-};
+// Provide the definition for IntPair and the print() member function here
+struct IntPair {
+	int p1;
+	int p2;
+	void print() {
+		std::cout << "Pair(" << p1 << ", " << p2 << ")\n";
+	}
 
-void printDate(const Date& date)
-{
-    std::cout << date.m_day << '/' << date.m_month << '/' << date.m_year;
-}
+	bool isEqual(IntPair a) {
+		return (p1 == a.p1) && (p2 == a.p2);
+	}
+};
 
 int main()
 {
-    Date date{ 4, 10, 21 };
-    printDate(date);
+	IntPair p1{ 1, 2 };
+	IntPair p2{ 3, 4 };
 
-    return 0;
+	std::cout << "p1: ";
+	p1.print();
+
+	std::cout << "p2: ";
+	p2.print();
+
+	std::cout << "p1 and p1 " << (p1.isEqual(p1) ? "are equal\n" : "are not equal\n");
+	std::cout << "p1 and p2 " << (p1.isEqual(p2) ? "are equal\n" : "are not equal\n");
+
+	return 0;
 }
