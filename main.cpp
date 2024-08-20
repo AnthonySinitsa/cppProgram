@@ -1,24 +1,34 @@
 #include <iostream>
+#include <string>
+#include <string_view>
 
-class Something
-{
+class Ball {
 private:
-    int m_x{};
+	std::string m_color{"none"};
+	double m_radius{0.0};
 
 public:
-    Something() // constructors must be non-const
-    {
-        m_x = 5; // okay to modify members in non-const constructor
-    }
+	Ball(std::string color, double radius)
+		: m_color{ color }
+		, m_radius{ radius }
+	{
+	}
 
-    int getX() const { return m_x; } // const
+	const std::string& getColor() const { return m_color; }
+	double getRadius() const { return m_radius; }
 };
+
+void print(const Ball& ball) {
+	std::cout << "Ball(" << ball.getColor() << ", " << ball.getRadius() << ")\n";
+}
 
 int main()
 {
-    const Something s{}; // const object, implicitly invokes (non-const) constructor
+	Ball blue{ "blue", 10.0 };
+	print(blue);
 
-    std::cout << s.getX(); // prints 5
+	Ball red{ "red", 12.0 };
+	print(red);
 
-    return 0;
+	return 0;
 }
