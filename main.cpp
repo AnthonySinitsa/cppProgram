@@ -2,33 +2,33 @@
 #include <string>
 #include <string_view>
 
-class Ball {
+class Employee
+{
 private:
-	std::string m_color{"none"};
-	double m_radius{0.0};
+    std::string m_name{};
+    int m_id{ 0 };
+
+    void printCreated() const
+    {
+        std::cout << "Employee " << m_name << " created\n";
+    }
 
 public:
-	Ball(std::string color, double radius)
-		: m_color{ color }
-		, m_radius{ radius }
-	{
-	}
+    Employee(std::string_view name)
+        : m_name{ name }
+    {
+        printCreated();
+    }
 
-	const std::string& getColor() const { return m_color; }
-	double getRadius() const { return m_radius; }
+    Employee(std::string_view name, int id)
+        : m_name{ name }, m_id{ id }
+    {
+        printCreated();
+    }
 };
-
-void print(const Ball& ball) {
-	std::cout << "Ball(" << ball.getColor() << ", " << ball.getRadius() << ")\n";
-}
 
 int main()
 {
-	Ball blue{ "blue", 10.0 };
-	print(blue);
-
-	Ball red{ "red", 12.0 };
-	print(red);
-
-	return 0;
+    Employee e1{ "James" };
+    Employee e2{ "Dave", 42 };
 }
