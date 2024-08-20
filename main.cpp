@@ -1,34 +1,37 @@
+#include <cmath>
 #include <iostream>
-#include <string>
-#include <string_view>
 
-class Employee
-{
+class Point2d {
 private:
-    std::string m_name{};
-    int m_id{ 0 };
-
-    void printCreated() const
-    {
-        std::cout << "Employee " << m_name << " created\n";
-    }
+    double m_x{0.0}, m_y{0.0};
 
 public:
-    Employee(std::string_view name)
-        : m_name{ name }
+    Point2d() = default;
+
+    Point2d(double x, double y)
+        : m_x{x}
+        , m_y{y}
     {
-        printCreated();
     }
 
-    Employee(std::string_view name, int id)
-        : m_name{ name }, m_id{ id }
-    {
-        printCreated();
+    void print() {
+        std::cout << "Point2d(" << m_x << ", " << m_y << ")\n";
+    }
+
+    double distanceTo(Point2d& other) {
+        return sqrt((m_x - other.m_x) * (m_x - other.m_x) + (m_y - other.m_y) * (m_y - other.m_y));
     }
 };
 
 int main()
 {
-    Employee e1{ "James" };
-    Employee e2{ "Dave", 42 };
+    Point2d first{};
+    Point2d second{ 3.0, 4.0 };
+
+    first.print();
+    second.print();
+
+    std::cout << "Distance between two points: " << first.distanceTo(second) << '\n';
+
+    return 0;
 }
