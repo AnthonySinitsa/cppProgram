@@ -1,32 +1,32 @@
-#include <string>
 #include <iostream>
 
-class Ball {
+class Simple
+{
 private:
-	std::string m_color{};
-	double m_radius{};
+    int m_id{};
 
 public:
-	Ball(std::string color, double radius)
-		: m_color{color}, m_radius{radius}
-	{}
+    Simple(int id)
+        : m_id{ id }
+    {
+        std::cout << "Constructing Simple " << m_id << '\n';
+    }
 
-	const std::string& getColor() const { return m_color; }
-	double getRadius() const { return m_radius; }
+    ~Simple() // here's our destructor
+    {
+        std::cout << "Destructing Simple " << m_id << '\n';
+    }
 
+    int getID() const { return m_id; }
 };
-
-void print(const Ball& ball) {
-	std::cout << "Color: " << ball.getColor() << "Radius: " << ball.getRadius() << "\n";
-}
 
 int main()
 {
-	Ball blue{ "blue", 10.0 };
-	print(blue);
+    // Allocate a Simple
+    Simple simple1{ 1 };
+    {
+        Simple simple2{ 2 };
+    } // simple2 dies here
 
-	Ball red{ "red", 12.0 };
-	print(red);
-
-	return 0;
-}
+    return 0;
+} // simple1 dies here
