@@ -1,37 +1,32 @@
-#include <cmath>
+#include <string>
 #include <iostream>
 
-class Point2d {
+class Ball {
 private:
-    double m_x{0.0}, m_y{0.0};
+	std::string m_color{};
+	double m_radius{};
 
 public:
-    Point2d() = default;
+	Ball(std::string color, double radius)
+		: m_color{color}, m_radius{radius}
+	{}
 
-    Point2d(double x, double y)
-        : m_x{x}
-        , m_y{y}
-    {
-    }
+	const std::string& getColor() const { return m_color; }
+	double getRadius() const { return m_radius; }
 
-    void print() {
-        std::cout << "Point2d(" << m_x << ", " << m_y << ")\n";
-    }
-
-    double distanceTo(Point2d& other) {
-        return sqrt((m_x - other.m_x) * (m_x - other.m_x) + (m_y - other.m_y) * (m_y - other.m_y));
-    }
 };
+
+void print(const Ball& ball) {
+	std::cout << "Color: " << ball.getColor() << "Radius: " << ball.getRadius() << "\n";
+}
 
 int main()
 {
-    Point2d first{};
-    Point2d second{ 3.0, 4.0 };
+	Ball blue{ "blue", 10.0 };
+	print(blue);
 
-    first.print();
-    second.print();
+	Ball red{ "red", 12.0 };
+	print(red);
 
-    std::cout << "Distance between two points: " << first.distanceTo(second) << '\n';
-
-    return 0;
+	return 0;
 }
